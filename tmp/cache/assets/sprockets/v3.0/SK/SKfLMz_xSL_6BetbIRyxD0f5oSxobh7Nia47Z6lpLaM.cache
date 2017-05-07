@@ -1,0 +1,72 @@
+I"E
+(function() {
+  var nowRecognition;
+
+  nowRecognition = false;
+
+  this.vr_function = function() {
+    var proc_start, proc_stop;
+    proc_stop = function() {
+      return recognition.stop();
+    };
+    proc_start = function() {
+      var recognition;
+      recognition = new webkitSpeechRecognition();
+      recognition.lang = document.querySelector('#select_lang').value;
+      recognition.interimResults = true;
+      recognition.onsoundstart = function() {
+        return document.getElementById('status').innerHTML = "認識中";
+      };
+      recognition.onnomatch = function() {
+        return document.getElementById('status').innerHTML = "もう一度試してください";
+      };
+      recognition.onerror = function() {
+        return proc_start();
+      };
+      recognition.onsoundend = function() {
+        if (nowRecognition === false) {
+          document.getElementById('status').innerHTML = "停止中";
+          return proc_stop();
+        } else {
+          return proc_start();
+        }
+      };
+      recognition.onresult = function(event) {
+        var i, j, match_count, match_text, ref, ref1, results, results1, set_text;
+        match_count = 0;
+        results = event.results;
+        results1 = [];
+        for (i = j = ref = event.resultIndex, ref1 = results.length; ref <= ref1 ? j <= ref1 : j >= ref1; i = ref <= ref1 ? ++j : --j) {
+          if (results[i].isFinal) {
+            match_text = document.getElementById('search_text').innerHTML;
+            document.getElementById('result_text').innerHTML = results[i][0].transcript;
+            set_text = document.getElementById('result_text').innerHTML;
+            if (set_text[i][0] === match_text) {
+              document.getElementById('status').innerHTML = "メールを送信しました！";
+            }
+            results1.push(proc_start());
+          } else {
+            results1.push(document.getElementById('result_text').innerHTML = "[途中経過] " + results[i][0].transcript);
+          }
+        }
+        return results1;
+      };
+      return recognition.start();
+    };
+    if (nowRecognition) {
+      nowRecognition = false;
+      document.getElementById('status').innerHTML = "stop";
+      document.querySelector('#btn').value = '音声認識開始';
+      document.querySelector('#btn').className = '';
+      return proc_stop();
+    } else {
+      nowRecognition = true;
+      document.getElementById('status').innerHTML = "start";
+      document.querySelector('#btn').value = '音声認識停止';
+      document.querySelector('#btn').className = 'select';
+      return proc_start();
+    }
+  };
+
+}).call(this);
+:ET

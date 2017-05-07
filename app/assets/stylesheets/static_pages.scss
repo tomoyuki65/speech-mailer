@@ -1,0 +1,74 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#header {
+  text-align: center;
+}
+.menu_list {
+  text-align: center;
+}
+.menu_list li {
+  display: inline;
+  list-style: none;
+  background: #ddd;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+#main_body {
+  text-align: center;
+}
+.body1 {
+  text-align: center;
+}
+.body1 li {
+  display: inline;
+  list-style: none;
+  padding: 5px;
+  margin-right: 5px;
+}
+.body2 {
+  text-align: center;
+  padding: 0;
+  margin-right: 0;
+}
+.body3 {
+  text-align: center;
+}
+.body3 li {
+  display: inline;
+  list-style: none;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+#btn {
+    background: -webkit-linear-gradient(top,#008dfd 30%,#0370ea 100%);
+    color: white;
+    text-shadow: 1px 1px 1px #076bd2;
+    border-radius: 3px;
+    border: 1px solid #076bd2;
+    padding: 8px 25px;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+#btn.select {
+    background: -webkit-linear-gradient(top,#f2739e 30%,#f23f7b 100%);
+    text-shadow: 1px 1px 1px #f1115c;
+    border: 1px solid #f1115c;
+}
+
+#sub_b1 {
+  width: 550px;
+  margin: 0 auto;
+  text-align: left;
+}
+#sub_b1 h2 {
+  border-bottom: 1px #000000 solid;
+  font-style: italic;
+}
+#sub_b2 {
+  text-align: center;
+}
