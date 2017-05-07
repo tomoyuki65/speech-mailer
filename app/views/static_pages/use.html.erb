@@ -1,0 +1,23 @@
+<% provide(:title, "How to use") %>
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <div id="sub_b1">
+      <h2><%= yield(:title) %></h2>
+      <p>
+        Web Speech APIを使用しているため、
+        <br>
+        ブラウザは「Google Chrome」を使用して下さい。
+        <br>
+        使い方については、以下を参照下さい。
+      </p>
+
+    </div>
+    <br>
+    <div id="sub_b2">
+      <%= image_tag 'speechmailer.jpg', :size => '1000x800' %>
+    </div>
+  </body>
+</html>

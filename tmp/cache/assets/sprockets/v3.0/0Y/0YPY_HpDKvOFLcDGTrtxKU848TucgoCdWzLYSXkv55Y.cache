@@ -1,0 +1,82 @@
+I"�(function() {
+  var nowRecognition;
+
+  nowRecognition = false;
+
+  this.vr_function = function() {
+    var proc_mail_send, proc_start, proc_stop;
+    proc_mail_send = function(msg) {
+      return $.ajax({
+        url: 'static_pages/send_message',
+        type: 'GET',
+        data: 'pushdata'
+      });
+    };
+    proc_stop = function() {
+      return recognition.stop();
+    };
+    proc_start = function() {
+      var recognition;
+      recognition = new webkitSpeechRecognition();
+      recognition.lang = document.querySelector('#select_lang').value;
+      recognition.interimResults = true;
+      recognition.onsoundstart = function() {
+        return document.getElementById('status').innerHTML = "認識中";
+      };
+      recognition.onnomatch = function() {
+        return document.getElementById('status').innerHTML = "もう一度試してください";
+      };
+      recognition.onerror = function() {
+        return proc_start();
+      };
+      recognition.onsoundend = function() {
+        if (nowRecognition === false) {
+          document.getElementById('status').innerHTML = "停止中";
+          return proc_stop();
+        } else {
+          return proc_start();
+        }
+      };
+      recognition.onresult = function(event) {
+        var check_text, i, j, mail_address, match_count, match_text, ref, ref1, results, results1;
+        match_count = 0;
+        results = event.results;
+        results1 = [];
+        for (i = j = ref = event.resultIndex, ref1 = results.length; ref <= ref1 ? j <= ref1 : j >= ref1; i = ref <= ref1 ? ++j : --j) {
+          if (results[i].isFinal) {
+            match_text = document.getElementById('search_text').value;
+            document.getElementById('result_text').innerHTML = results[i][0].transcript;
+            check_text = document.getElementById('result_text').value;
+            if (match_text !== "") {
+              if (check_text.indexOf(match_text) !== -1) {
+                document.getElementById('status').innerHTML = "メールを送信しました！";
+                mail_address = document.getElementById('mail_text').value;
+                proc_mail_send(check_text);
+              }
+            }
+            results1.push(proc_start());
+          } else {
+            results1.push(document.getElementById('result_text').innerHTML = "[途中経過] " + results[i][0].transcript);
+          }
+        }
+        return results1;
+      };
+      return recognition.start();
+    };
+    if (nowRecognition) {
+      nowRecognition = false;
+      document.getElementById('status').innerHTML = "Stop";
+      document.querySelector('#btn').value = '音声認識開始';
+      document.querySelector('#btn').className = '';
+      return proc_stop();
+    } else {
+      nowRecognition = true;
+      document.getElementById('status').innerHTML = "Start";
+      document.querySelector('#btn').value = '音声認識停止';
+      document.querySelector('#btn').className = 'select';
+      return proc_start();
+    }
+  };
+
+}).call(this);
+:ET

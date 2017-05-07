@@ -1,0 +1,18 @@
+<% provide(:title, "About") %>
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <div id="sub_b1">
+      <h2><%= yield(:title) %></h2>
+      <p>
+        このサイトは、マイクから音声認識した内容をテキスト変換し、
+        <br>
+        画面への出力および、必要に応じて検索文字をトリガーとして、
+        <br>
+        認識メッセージ内容を自動メール送信するWebアプリケーションです。
+      </p>
+    </div>
+  </body>
+</html>

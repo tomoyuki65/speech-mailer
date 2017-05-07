@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <div id="main_body">
+      <input id="btn" type="button" onClick="vr_function();" value="音声認識開始">
+      <br>
+      <br>
+        <div class="body1">
+          <ul>
+            <li>ステータス</li>
+            <li>
+              <textarea id="status" cols="20" rows="1">
+              </textarea>
+            </li>
+        </div>
+        <div class="body2">
+          <h5>認識メッセージ</h5>
+          <textarea id="result_text" name="msg-text" cols="30" rows="4">
+          </textarea>
+        </div>
+        <br>
+        <div class="body3">
+            <li>認識言語</li>
+            <li>
+              <select id="select_lang">
+                <option value="ja-JP">日本語</option>
+                <option value="en-US">English</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+      <div class="body4">
+        <p>検索文字</p>
+        <input id="search_text" type="text" size="25">
+        <p>送信先メールアドレス</p>
+        <input id="mail_text" type="email" size="25">
+      </div>
+    </div>
+    <br>
+  </body>
+</html>
